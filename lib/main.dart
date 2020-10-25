@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 
+import './pomodoro.dart';
+
 void main() {
-  runApp(Pomodoro());
+  runApp(MyApp());
 }
 
-class Pomodoro extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+      ),
+      home: Pomodoro(),
+    );
   }
 }
