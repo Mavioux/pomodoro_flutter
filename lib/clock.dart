@@ -54,6 +54,8 @@ class _ClockState extends State<Clock> {
         .add(new Duration(minutes: _minutes, seconds: _seconds))
         .millisecondsSinceEpoch;
 
+    print('Got initialized!');
+
     // defines a timer
     _everySecond = Timer.periodic(Duration(seconds: 1), (Timer t) {
       setState(() {
@@ -61,24 +63,37 @@ class _ClockState extends State<Clock> {
           case 'Status.play':
             print('Play');
             _now = DateTime.now().millisecondsSinceEpoch;
-            if (_previousState != 'Status.play') {
+            if (_previousState == 'Status.pause') {
+              print('pros8etw ston mellontiko xrono: minutes: ' +
+                  (_minutes.toString() + " seconds: " + (_seconds).toString()));
               _then = DateTime.now()
                   .add(new Duration(minutes: _minutes, seconds: _seconds))
                   .millisecondsSinceEpoch;
+            } else if (_previousState == 'Status.stop') {
+              _then = DateTime.now()
+                  .add(new Duration(minutes: 15, seconds: 0))
+                  .millisecondsSinceEpoch;
             }
             _previousState = 'Status.play';
+            print(_now.toString() + " " + _then.toString());
+            print(_minutes.toString() + " " + _seconds.toString());
             break;
 
           case 'Status.pause':
             print('Pause');
-            _minutes = _then - _now ~/ 60000;
-            _seconds = _then - _now ~/ 1000 % 60;
+            _minutes = (_then - _now) ~/ 60000;
+            _seconds = ((_then - _now) ~/ 1000) % 60;
             _previousState = 'Status.pause';
+            print(_now.toString() + " " + _then.toString());
+            print(_minutes.toString() + " " + _seconds.toString());
             break;
           case 'Status.stop':
             print('Stop');
-            _minutes = _minutes;
-            _seconds = _seconds;
+            _minutes = 15;
+            _seconds = 0;
+            _previousState = 'Status.pause';
+            print(_now.toString() + " " + _then.toString());
+            print(_minutes.toString() + " " + _seconds.toString());
             break;
           default:
             print('Something bad happened!');
