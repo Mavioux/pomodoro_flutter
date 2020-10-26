@@ -19,7 +19,10 @@ class _MainBodyState extends State<MainBody> {
       child: Center(
         child: Column(
           children: [
-            Clock(),
+            Clock(
+              minutes: 15,
+              seconds: 0,
+            ),
           ],
         ),
       ),

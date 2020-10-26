@@ -5,8 +5,12 @@ import 'package:pomodoro/buttons.dart';
 enum Status { play, pause, stop }
 
 class Clock extends StatefulWidget {
+  final minutes;
+  final seconds;
   const Clock({
     Key key,
+    this.minutes = 15,
+    this.seconds = 0,
   });
 
   @override
@@ -46,8 +50,8 @@ class _ClockState extends State<Clock> {
     super.initState();
 
     // sets first value
-    _minutes = 15;
-    _seconds = 0;
+    _minutes = widget.minutes;
+    _seconds = widget.seconds;
     _now = DateTime.now().millisecondsSinceEpoch;
     _initialTime = _now;
     _then = DateTime.now()
@@ -57,7 +61,7 @@ class _ClockState extends State<Clock> {
     print('Got initialized!');
 
     // defines a timer
-    _everySecond = Timer.periodic(Duration(seconds: 1), (Timer t) {
+    _everySecond = Timer.periodic(Duration(milliseconds: 500), (Timer t) {
       setState(() {
         switch (status.toString()) {
           case 'Status.play':
@@ -89,9 +93,13 @@ class _ClockState extends State<Clock> {
             break;
           case 'Status.stop':
             print('Stop');
-            _minutes = 15;
-            _seconds = 0;
+            _minutes = widget.minutes;
+            _seconds = widget.seconds;
+            _now = DateTime.now().millisecondsSinceEpoch;
             _previousState = 'Status.pause';
+            _then = DateTime.now()
+                .add(new Duration(minutes: _minutes, seconds: _seconds))
+                .millisecondsSinceEpoch;
             print(_now.toString() + " " + _then.toString());
             print(_minutes.toString() + " " + _seconds.toString());
             break;
@@ -122,9 +130,12 @@ class _ClockState extends State<Clock> {
               style: TextStyle(
                 fontSize: 50,
               ),
+              textAlign: TextAlign.center,
             ),
           ),
-          Buttons(_play, _pause, _stop),
+          Center(
+            child: Buttons(_play, _pause, _stop),
+          )
         ],
       ),
     );
