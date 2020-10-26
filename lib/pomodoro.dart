@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import './main_body.dart';
-import 'my_bottom_navigation_bar.dart';
 
 class Pomodoro extends StatelessWidget {
   @override

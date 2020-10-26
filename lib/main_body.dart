@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
-import './buttons.dart';
 import './clock.dart';
 
-class MainBody extends StatelessWidget {
+enum Status { play, pause, stop }
+
+class MainBody extends StatefulWidget {
+  @override
+  _MainBodyState createState() => _MainBodyState();
+}
+
+class _MainBodyState extends State<MainBody> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,7 +20,6 @@ class MainBody extends StatelessWidget {
         child: Column(
           children: [
             Clock(),
-            Buttons(),
           ],
         ),
       ),
