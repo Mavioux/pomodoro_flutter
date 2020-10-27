@@ -70,6 +70,7 @@ class _ClockState extends State<Clock> {
             if (_previousState == 'Status.pause') {
               print('pros8etw ston mellontiko xrono: minutes: ' +
                   (_minutes.toString() + " seconds: " + (_seconds).toString()));
+              _initialTime = _now;
               _then = DateTime.now()
                   .add(new Duration(minutes: _minutes, seconds: _seconds))
                   .millisecondsSinceEpoch;
@@ -113,7 +114,9 @@ class _ClockState extends State<Clock> {
 
   @override
   Widget build(BuildContext context) {
-    var percentage = ((_then - _now) ~/ (_then - _initialTime)) * 100;
+    var x = new Duration(minutes: widget.minutes, seconds: widget.seconds)
+        .inMilliseconds;
+    var percentage = ((_then - _now) / x * 100).toInt();
 
     return Container(
       margin: const EdgeInsets.all(30),
