@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro/settings.dart';
 
 import './clock.dart';
+import './settings.dart';
 
 enum Status { play, pause, stop }
 
@@ -14,13 +16,16 @@ class _MainBodyState extends State<MainBody> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: Colors.blue,
+      color: Colors.grey[200],
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Clock(
             minutes: 15,
             seconds: 0,
+          ),
+          Container(
+            child: Settings(),
           ),
         ],
       ),
