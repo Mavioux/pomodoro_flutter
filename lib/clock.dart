@@ -45,6 +45,14 @@ class _ClockState extends State<Clock> {
     });
   }
 
+  String _time_formatter(int time) {
+    if (time < 10) {
+      return "0" + time.toString();
+    } else {
+      return time.toString();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -119,27 +127,22 @@ class _ClockState extends State<Clock> {
     var percentage = ((_then - _now) / x * 100).toInt();
 
     return Container(
-      margin: const EdgeInsets.all(30),
-      child: Column(
-        children: [
-          Center(
-            child: Text(
-              "${(_then - _now) ~/ 60000}" +
+      child: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              _time_formatter((_then - _now) ~/ 60000) +
                   " : " +
-                  "${((_then - _now) ~/ 1000) % 60}" +
-                  "\n ${percentage} %" +
-                  "\n" +
-                  status.toString(),
+                  _time_formatter(((_then - _now) ~/ 1000) % 60),
               style: TextStyle(
                 fontSize: 50,
               ),
               textAlign: TextAlign.center,
             ),
-          ),
-          Center(
-            child: Buttons(_play, _pause, _stop),
-          )
-        ],
+            Buttons(_play, _pause, _stop),
+          ],
+        ),
       ),
     );
   }

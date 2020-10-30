@@ -14,17 +14,15 @@ class _MainBodyState extends State<MainBody> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(50),
       color: Colors.blue,
-      child: Center(
-        child: Column(
-          children: [
-            Clock(
-              minutes: 15,
-              seconds: 0,
-            ),
-          ],
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Clock(
+            minutes: 15,
+            seconds: 0,
+          ),
+        ],
       ),
     );
   }

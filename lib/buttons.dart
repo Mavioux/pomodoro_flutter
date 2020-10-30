@@ -10,35 +10,59 @@ class Buttons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        // color: Colors.green,
-        margin: const EdgeInsets.all(30),
-        child: Center(
-          child: Row(
-            children: [
-              IconButton(
+      // color: Colors.green,
+      margin: const EdgeInsets.only(left: 40, right: 40),
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.only(left: 5, right: 5),
+              width: 200,
+              height: 100,
+              // color: Colors.black,
+              child: IconButton(
                   icon: Icon(
                     Icons.play_arrow,
                     size: 50,
                     color: Colors.blue[900],
                   ),
                   onPressed: play),
-              IconButton(
+            ),
+          ),
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.only(left: 5, right: 5),
+              width: 200,
+              height: 100,
+              // color: Colors.black,
+              child: IconButton(
                   icon: Icon(
                     Icons.pause,
                     size: 50,
                     color: Colors.grey[500],
                   ),
                   onPressed: pause),
-              IconButton(
+            ),
+          ),
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.only(left: 5, right: 5),
+              width: 200,
+              height: 100,
+              // color: Colors.black,
+              child: IconButton(
+                  focusColor: Colors.white,
                   icon: Icon(
                     Icons.stop,
                     size: 50,
-                    color: Colors.red,
+                    // color: Colors.red,
                   ),
                   onPressed: stop),
-            ],
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            ),
           ),
-        ));
+        ],
+        // mainAxisAlignment: MainAxisAlignment.center,
+      ),
+    );
   }
 }

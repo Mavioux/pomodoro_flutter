@@ -10,7 +10,9 @@ class Pomodoro extends StatelessWidget {
         leading: Icon(Icons.star),
         title: Text('Pomodoro App'),
       ),
-      body: MainBody(),
+      body: Center(
+        child: MainBody(),
+      ),
     );
   }
 }
